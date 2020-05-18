@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "商品管理系统";
+    var goods = ViewBag.goods;
+}
+
+<h2>Index</h2>
+<table border="1" style="background-color:aqua" width="100%">
+    <thead>
+        <tr>
+            <th>编号</th>
+            <th>商品名称</th>
+            <th>编辑</th>
+        </tr>
+    </thead>
+    @foreach (var data in goods)
+    {
+        <tr>
+            <td>
+                @data.GoodsID
+            </td>
+            <td>
+                @data.GoodsName
+            </td>
+            <td>
+                <a>编辑</a>
+                <a>删除</a>
+            </td>
+        </tr>
+
+    }
+</table>
