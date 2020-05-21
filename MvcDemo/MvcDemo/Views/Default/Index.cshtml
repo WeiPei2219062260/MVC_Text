@@ -2,6 +2,22 @@
     ViewBag.Title = "商品管理系统";
     var goods = ViewBag.goods;
 }
+<script>
+    function del(id) {
+        if (confirm("确定删除吗?")) {
+            $.post("/Default/Delete/" + id, null,
+                function success(data) {
+                    if (data == "ok") {
+                        alert("删除成功");
+                        window.location.href = "/Default/Index";
+                    }
+                    else {
+                        alert("参数错误");
+                    }
+                })
+        }
+    }
+</script>
 
 <h2>Index</h2>
 <table border="1" style="background-color:aqua" width="100%">
@@ -26,6 +42,5 @@
                 <a>删除</a>
             </td>
         </tr>
-
     }
 </table>

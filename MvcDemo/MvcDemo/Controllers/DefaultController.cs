@@ -1,4 +1,5 @@
 ﻿using MvcDemo.Models;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -6,6 +7,7 @@ namespace MvcDemo.Controllers
 {
     public class DefaultController : Controller
     {
+        private Good good = new Good();
         private GoodsDBEntities1 entities = new GoodsDBEntities1();
 
         // GET: Default
@@ -18,10 +20,11 @@ namespace MvcDemo.Controllers
 
         public ActionResult Delete(int id)
         {
-            var goods = entities.Goods.FirstOrDefault(x => x.GoodsID == id);
-            entities.Goods.Remove(goods);
+            good.GoodsID = id;
+            entities.Goods.Attach(good);
+            entities.Entry(good).State = EntityState.Deleted;
             entities.SaveChanges();
-            return Content("OK");
+            return Content("ok");
         }
     }
 }
